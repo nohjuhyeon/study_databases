@@ -12,5 +12,6 @@ collection = database['fruits']
 collection.insert_one({"name": "키위", 
                         "color": "갈색", 
                         "origin":"뉴질랜드"})
-
+dict_fruit = {"name": "오렌지", "color": "주황색", "origin":"미국"}
+collection.insert_one(dict_fruit)
 pass
