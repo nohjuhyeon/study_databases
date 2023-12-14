@@ -14,12 +14,43 @@ def insert_list(collection,list_items):                                         
         dict_quiz = list_items[i]                                              
         insert(collection,dict_quiz)                                           # 리스트의 dict 추가
 
-def question_print():
+def question_print(list_question, list_choices,list_answer,list_input):
     for i in range(len(list_question)):
         print(list_question[i])
         for j in range(len(list_choices[i])):
             print("{}. {} ".format(j+1,list_choices[i][j]))
-        A = input("답을 입력하세요.:")
+        input_answer = input("답을 입력하세요.:")
+        if input_answer == list_answer[i]:
+            print("정답입니다!")
+        list_input.append(input_answer)
+        
+    return list_input
+
+def db_question():
+    quiz = collection.find({},{"_id":0,"question":1, "choices":1,"answer":1,"score":1})
+    list_question = []   
+    for i in quiz:
+        list_question.append(i["question"])
+    return list_question
+def db_choices():
+    quiz = collection.find({},{"_id":0,"question":1, "choices":1,"answer":1,"score":1})
+    list_choices = []   
+    for i in quiz:
+        list_choices.append(i["choices"])
+    return list_choices
+def db_answer():
+    quiz = collection.find({},{"_id":0,"question":1, "choices":1,"answer":1,"score":1})
+    list_answer = []   
+    for i in quiz:
+        list_answer.append(i["answer"])
+    return list_answer    
+def db_score():
+    quiz = collection.find({},{"_id":0,"question":1, "choices":1,"answer":1,"score":1})
+    list_score = []   
+    for i in quiz:
+        list_score.append(i["score"])
+    return list_score
+
 
 quiz_list = [                                                                  #추가할 리스트 작성
     {
@@ -61,22 +92,10 @@ collection_name = 'solvingProblem'                                              
 
 collection = connect(mongo_server_link,database_name,collection_name)                        # 추가하고자 하는 collection에 연결
 # insert_list(collection,quiz_list)
+list_input = []
 
-question = collection.find({},{"_id":0,"question":1,})
-choices = collection.find({},{"_id":0,"choices":1 })
-answer = collection.find({},{"_id":0,"answer":1 })
-score = collection.find({},{"_id":0,"score":1 })
-list_question = []
-list_choices = []
-list_answer = []
-list_score = []
-for i in question:
-    list_question.append(i["question"])
-for i in choices:
-    list_choices.append(i["choices"])
-for i in answer:
-    list_answer.append(i["answer"])
-for i in score:
-    list_score.append(i["score"])    
-
-question_print()
+question_index = db_question()
+choices_index = db_choices()
+answer_index = db_answer()
+list_input = question_print(question_index,choices_index,answer_index,list_input)
+print(list_input)
