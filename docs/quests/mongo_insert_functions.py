@@ -10,8 +10,7 @@ def insert(collection,dict_fruit):                                      # 리스
     collection.insert_one(dict_fruit)                                   
     return
 
-def insert_list(list_items):                                                    #리스트의 dict들을 모두 추가하는 함수 작성
-    collection = connect(mongo_server_link,database_name,collection_name)       # 추가하고자 하는 collection에 연결
+def insert_list(collection,list_items):                                                    #리스트의 dict들을 모두 추가하는 함수 작성
     for i in range(len(list_items)):                                            # 리스트의 dict들이 모두 추가될 때까지 반복
         dict_fruit = list_items[i]                                              
         insert(collection,dict_fruit)                                           # 리스트의 dict 추가
@@ -27,4 +26,5 @@ mongo_server_link = "mongodb://localhost:27017"                                 
 database_name ="local"                                                          # 데이터 베이스 이름 입력
 collection_name = 'fruits_info'                                                 # collection 이름 입력
 
-insert_list(fruit_info)
+collection = connect(mongo_server_link,database_name,collection_name)                        # 추가하고자 하는 collection에 연결
+insert_list(collection,fruit_info)
