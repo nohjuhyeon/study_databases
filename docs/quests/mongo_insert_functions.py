@@ -6,14 +6,10 @@ def connect(mongo_server_link,database_name,collection_name):                # c
     collection = database[collection_name]                                   # collection에 연결
     return collection
 
-def insert(collection,dict_fruit):                                      # 리스트를 추가하는 함수 작성
-    collection.insert_one(dict_fruit)                                   
-    return
-
 def insert_list(collection,list_items):                                                    #리스트의 dict들을 모두 추가하는 함수 작성
     for i in range(len(list_items)):                                            # 리스트의 dict들이 모두 추가될 때까지 반복
         dict_fruit = list_items[i]                                              
-        insert(collection,dict_fruit)                                           # 리스트의 dict 추가
+        collection.insert_one(dict_fruit)                                        # 리스트의 dict 추가
 
 fruit_info = [                                                         #추가할 리스트 작성
     {"name": "사과", "color": "빨강", "taste": "달콤"},
