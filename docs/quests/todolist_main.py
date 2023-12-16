@@ -17,13 +17,28 @@ class quest():
             str_participate =input("input Your Name : ")
             participate["name"] =str_participate
         self.collection.insert_many(participate_list)
+    def input_participate_todo_list(self):
+        print("ToDo List 중 하나 선택 하세요 !")
+        print("1. 주간 보고서 작성, 2. 이메일 확인 및 응답, 3. 회의 준비, 4. 프로젝트 계획서 수정, 팀 멤버와의 1:1 면담")
+        num_title = input("Title 번호 : ").lower()
+
         
-
-
-
-
-
-
+        while True:
+            str_status = input("Status : ")
+            if str_status == "완료" or str_status == "진행중":
+                break
+            else:
+                print("'완료' 또는 '진행중'을 입력해주세요.")
+        while True:
+            print("todo list 추가 시 'c', 다음 사용자 입력 시 'q', 모든 입력을 종료할 시 'x'를 입력하세요")
+            input_finish = input("종료 여부(todo list 추가 시 )")
+            if input_finish == "c":
+                check_finish = "continue"
+            elif input_finish == "q":
+                check_finish = "quit"
+            elif input_finish == "x":
+                check_finish = "finish"
+            return check_finish
 # mongodb에 접속 -> 자원에 대한 class 
 
 mongo_server_link = "mongodb://localhost:27017"                                                                       # mongoDB 서버 입력
@@ -39,16 +54,3 @@ todo_list = [
 ]
 quest_todo.todo_list_upload(todo_list)
 quest_todo.participate_upload()
-
-while True:
-    try: 
-        print("ToDo List 중 하나 선택 하세요 !")
-        print("1. 주간 보고서 작성, 2. 이메일 확인 및 응답, 3. 회의 준비, 4. 프로젝트 계획서 수정, 팀 멤버와의 1:1 면담")
-        num_title = input("Title 번호(종료를 원할 경우 \"C\"를 누르세요.) : ").lower()
-        if num_title != "c":
-            pass
-        else:
-            break
-
-    except:
-        pass
