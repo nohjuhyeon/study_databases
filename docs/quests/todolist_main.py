@@ -80,8 +80,13 @@ check_finish = quest_todo.if_input_finish()
 
 
 
-# for i in range(len(list_user_name)):
-#     while True:
-#         participate_todo_list
-#         if check_finish == "c":
-#             pass
+for i in range(len(list_user_name)):
+    while True:
+        participate_todo_list
+        check_finish
+        if check_finish == "c":
+            pass
+        else:
+            break
+    if check_finish == "x":
+        break
