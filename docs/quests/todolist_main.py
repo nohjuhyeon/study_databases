@@ -12,6 +12,6 @@ todo_list = [
     {"title": "팀 멤버와의 1:1 면담", "description": "팀 멤버와 개별적으로 만나서 그들의 업무 진행 상황, 이슈, 우려사항 등을 논의합니다."},
 ]
 
-quest_todo.todo_list_upload(todo_list)
-list_user_name = quest_todo.participate_upload()
-quest_todo.participant_todo_upload(list_user_name)
+quest_todo.todo_list_upload(todo_list)                                                                              # todo list를 todos_list collection에 추가
+list_user_name = quest_todo.participate_upload()                                                                    # 참여자의 정보를 participants에 collection에 추가
+quest_todo.participant_todo_upload(list_user_name)                                                                  # 참여자의 todo list와 진행 여부를 participants_todo에 추가
