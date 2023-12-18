@@ -1,8 +1,8 @@
-import todolist_functions
+import todolist_function2
 
 mongo_server_link = "mongodb://localhost:27017"                                                                       # mongoDB 서버 입력
 database_name ="local"                                                                                                # 데이터 베이스 이름 입력
-quest_todo = todolist_functions.quest(mongo_server_link,database_name)
+quest_todo = todolist_function2.quest(mongo_server_link,database_name)
 
 todo_list = [
     {"title": "주간 보고서 작성", "description": "팀의 주간 성과와 진행 상황에 대한 보고서를 작성합니다."},
@@ -12,8 +12,5 @@ todo_list = [
     {"title": "팀 멤버와의 1:1 면담", "description": "팀 멤버와 개별적으로 만나서 그들의 업무 진행 상황, 이슈, 우려사항 등을 논의합니다."},
 ]
 
-quest_todo.todo_list_upload(todo_list)                                                                              # todo list를 todos_list collection에 추가
-
-list_user_name = quest_todo.participate_upload()
-
-quest_todo.participant_todo_upload(list_user_name)
+quest_todo.todo_list_upload(todo_list) 
+quest_todo.final()
