@@ -16,8 +16,13 @@ db.posts.find({$and :[{category :{ $in : ["Event", "Tech"]}}, {likes:{$gt:4}}]},
 - $gte: >=
 - $lt: <
 - $lte: <=
-- $in: in 
-- $and: and
-- $or: or
-- $nor: nor
-- $not: not
+- $in: 다음 리스트에 포함된 값 중에 하나일 때/ {key : {$in : ["A","B"]}}
+- $and: and / {$and :[{"조건"},{"조건"}]}
+- $or: or / {$or :[{"조건"},{"조건"}]}
+- $nor: nor / / {$nor :[{"조건"},{"조건"}]}
+- $not: not 
+- $inc: value의 수치를 증가시킬 때 사용하는 명령어 
+- $rename: value의 이름을 바꿀 때 사용하는 명령어 
+- $set: value를 추가할 때 사용하는 명령어
+- $unset: value를 삭제할 때 사용하는 명령어 
+
